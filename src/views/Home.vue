@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+		<indexhead></indexhead>
+		<indexmain></indexmain>
   </div>
 </template>
 
 <script>
+	
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import indexhead from '@/components/index-head.vue'
+import indexmain from '@/components/index-main.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+		indexhead,
+		indexmain
   }
 }
 </script>
