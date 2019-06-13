@@ -2,15 +2,17 @@
 	<div class="search">
 		<!-- 搜索框 -->
 		<div class="W_top_search">
-			<div class="W_register h"><a href="//m.wbiao.cn/topics/app-download/" style="background-image:url(//static.wbiao.co/p/m/images/1/download_tips_2.png);background-size: 100% auto;background-position: center center;"
-				 class="register"></a><span class="sp1" id="closer"></span></div>
 			<header class="W_title">
 				<ul class="clearfix">
 					<li class="wb_title_middle wb_search">
 						<form action="" onsubmit="return false;"><span class="srh_icon icon-a-search01"></span> <input type="search"
-							 class="input_search" placeholder="搜索商品" maxlength="30"><span class="clean_search h"><i class="icon-a-close02"></i></span></form>
+							 class="input_search" placeholder="搜索商品" maxlength="30" v-model="change"><span class="clean_search" @click="searchGoods()">
+								<router-link :to="{name:searchBtn, params: {id:gids}}" class="icon-a-close02 iconfont">&#xe6e4;</router-link>
+							</span></form>
 					</li>
-					<li class="rewrite_right"> <router-link to="/" class="right_back">取消</router-link> </li>
+					<li class="rewrite_right">
+						<router-link to="/" class="right_back">取消</router-link>
+					</li>
 				</ul>
 			</header>
 		</div>
@@ -44,6 +46,48 @@
 </template>
 
 <script>
+	import Vue from 'vue'
+	export default Vue.extend({
+		data() {
+			return {
+				searchBtn: '',
+				change: '',
+				gids: []
+			}
+		},
+		methods: {
+			searchGoods() {
+				//遍历仓库数组数据，逐一匹配
+				console.log(this.$store.state.goodslist);
+				if (this.change) {
+					let data = this.$store.state.goodslist;
+					let reg = new RegExp(this.change, 'g');
+					let goods = [];
+					for (let i = 0; i <= data.length - 1; i++) {
+						if (reg.test(data[i].describe)) {
+							//遍历仓库数组数据,匹配后拿商品id
+							this.gids.push(data[i].gid*1);
+						} else {
+							console.log('no')
+						}
+					}
+					// console.log(goods);
+					// this.gids = goods;
+					console.log(this.gids);
+				}
+			}
+		},
+		watch: {
+			change: function(change) {
+				//console.log(this.change)
+				if (change) {
+					this.searchBtn = 'list';
+				} else {
+					this.searchBtn = '';
+				}
+			}
+		}
+	})
 </script>
 
 <style>
@@ -204,8 +248,8 @@
 
 	.W_title li .clean_search {
 		position: absolute;
-		right: 0;
-		top: 0;
+		right: 0px;
+		top: 0px;
 		width: 30px;
 		height: 28px;
 		z-index: 99;
@@ -222,8 +266,8 @@
 		background-image: url(/public/sprites/a/a.png?20190423);
 		background-position: -391px -368px;
 		background-size: 443px;
-		width: 16px;
-		height: 16px;
+		width: 30px;
+		height: 28px;
 	}
 
 	em,
@@ -357,59 +401,75 @@
 		font-size: 12px;
 		color: #333;
 	}
-	
+
 	/* 最新消息 */
 	.W_common_con {
-    position: fixed;
-    bottom: 60px;
-    z-index: 999;
-}.W_common_con .con_box {
-    position: absolute;
-}.W_ntalk {
-    display: none;
-    position: relative;
-}.W_ntalk .icon-d-right-kf {
-    margin-bottom: 10px;
-}.icon-d-right-kf {
-    display: block;
-    background-image: url(/public/sprites/d/d.png?20190519);
-    background-position: -306.5px 0;
-    background-size: 448.5px;
-    width: 40px;
-    height: 40px;
-}.W_ntalk .ntalk_txt.hide_ntalk {
-    right: 40px;
-}.W_ntalk .ntalk_txt {
-    display: none;
-    width: 170px;
-    position: absolute;
-    right: 50px;
-    top: 0;
-    height: 32px;
-    background-color: rgba(0,0,0,.75);
-    border-radius: 4px;
-    padding: 3px 8px;
-    -webkit-transition: right .3s cubic-bezier(.25,.46,.45,.94);
-    -moz-transition: right .3s cubic-bezier(.25,.46,.45,.94);
-    -ms-transition: right .3s cubic-bezier(.25,.46,.45,.94);
-    -o-transition: right .3s cubic-bezier(.25,.46,.45,.94);
-    transition: right .3s cubic-bezier(.25,.46,.45,.94);
-}.icon-d-kfgirl {
-    display: block;
-    background-image: url(/public/sprites/d/d.png?20190519);
-    background-position: -351.5px -287px;
-    background-size: 448.5px;
-    width: 31.5px;
-    height: 31.5px;
-}.W_ntalk .ntalk_txt .kf_txt {
-    display: block;
-    font-size: 13px;
-    color: #fff;
-    margin-left: 4px;
-    height: 32px;
-    line-height: 32px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+		position: fixed;
+		bottom: 60px;
+		z-index: 999;
+	}
+
+	.W_common_con .con_box {
+		position: absolute;
+	}
+
+	.W_ntalk {
+		display: none;
+		position: relative;
+	}
+
+	.W_ntalk .icon-d-right-kf {
+		margin-bottom: 10px;
+	}
+
+	.icon-d-right-kf {
+		display: block;
+		background-image: url(/public/sprites/d/d.png?20190519);
+		background-position: -306.5px 0;
+		background-size: 448.5px;
+		width: 40px;
+		height: 40px;
+	}
+
+	.W_ntalk .ntalk_txt.hide_ntalk {
+		right: 40px;
+	}
+
+	.W_ntalk .ntalk_txt {
+		display: none;
+		width: 170px;
+		position: absolute;
+		right: 50px;
+		top: 0;
+		height: 32px;
+		background-color: rgba(0, 0, 0, .75);
+		border-radius: 4px;
+		padding: 3px 8px;
+		-webkit-transition: right .3s cubic-bezier(.25, .46, .45, .94);
+		-moz-transition: right .3s cubic-bezier(.25, .46, .45, .94);
+		-ms-transition: right .3s cubic-bezier(.25, .46, .45, .94);
+		-o-transition: right .3s cubic-bezier(.25, .46, .45, .94);
+		transition: right .3s cubic-bezier(.25, .46, .45, .94);
+	}
+
+	.icon-d-kfgirl {
+		display: block;
+		background-image: url(/public/sprites/d/d.png?20190519);
+		background-position: -351.5px -287px;
+		background-size: 448.5px;
+		width: 31.5px;
+		height: 31.5px;
+	}
+
+	.W_ntalk .ntalk_txt .kf_txt {
+		display: block;
+		font-size: 13px;
+		color: #fff;
+		margin-left: 4px;
+		height: 32px;
+		line-height: 32px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 </style>

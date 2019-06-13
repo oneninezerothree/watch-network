@@ -10,9 +10,15 @@ export default new Vuex.Store({
     zhonglei : ''
   },
   mutations: {
-
+		
   },
   actions: {
 
+  },
+	getters: {
+	getdata(state) {
+   return state.goodslist;
   }
+		
+	}
 })
