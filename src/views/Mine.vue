@@ -32,11 +32,7 @@
         </a>
       </div>
     </div>
-<<<<<<< HEAD
     <div class="profile" v-show="isShow">
-=======
-    <div class="profile">
->>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
       <p class="no-login">
         登录后将显示您的详细资料~
         <router-link to="/login" tag="a">马上登录&gt;</router-link>
@@ -116,7 +112,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import { delCookie, getCookie } from "../assets/js/cookie.js";
 export default {
   data() {
@@ -223,89 +218,6 @@ export default {
       border-right: 1px solid rgba(211, 211, 211, 0.3);
     }
   }
-=======
-export default {};
-</script>
-<style lang="scss">
-#my {
-  overflow: auto;
-  margin-bottom: 40px
-}
-.top {
-  position: relative;
-  width: 100%;
-  height: 206px;
-  background-image: url(//static.wbiao.co/p/m/images/1/member-bg.png);
-  background-size: cover;
-  background-color: #1e1e1e;
-  .header {
-    position: relative;
-    height: 154px;
-    .icon {
-      position: absolute;
-      color: #ccc;
-      top: 10px;
-      left: 90%;
-      .mui-icon {
-        font-size: 28px;
-      }
-    }
-    .head-info {
-      position: absolute;
-      width: 95%;
-      margin-top: 45px;
-      .head-login {
-        display: inline-block;
-
-        font-size: 12px;
-        vertical-align: top;
-        margin-top: 13px;
-        .p1 {
-          color: #fff !important;
-          font-size: 16px;
-          margin-bottom: 2px;
-        }
-        .p2 {
-          color: #fff !important;
-          font-size: 12px;
-        }
-      }
-      .mui-icon {
-        font-size: 68px;
-        width: 68px;
-        height: 68px;
-        margin: 0 8px 0 24px;
-        color: #ccc;
-      }
-    }
-  }
-  .member-nav {
-    width: 100%;
-    height: 52px;
-    background: rgba(0, 0, 0, 0.4);
-    a {
-      position: relative;
-      width: 33.33%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      float: left;
-      color: #fff;
-      font-size: 12px;
-      text-align: center;
-      line-height: 17px;
-      .mui-icon {
-        font-size: 20px;
-      }
-    }
-    a:nth-child(2) {
-      border-left: 1px solid rgba(211, 211, 211, 0.3);
-      border-right: 1px solid rgba(211, 211, 211, 0.3);
-    }
-  }
->>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
 }
 .profile {
   width: 91.47%;
