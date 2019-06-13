@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isShowMfooter:true
+    isShowMfooter:true,
+    goods: '',
+    zhonglei : ''
   },
   mutations: {
 

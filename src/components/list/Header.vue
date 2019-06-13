@@ -11,9 +11,9 @@
         <a class="search_work esp1">搜索商品</a>
         
       </li>
-      <li class="wb_more">
+      <router-link to="/choice/" tag="li" class="wb_more">
         <a class="iconfont">&#xe771;</a>
-      </li>
+      </router-link>
     </ul>
   </header>
 </template>

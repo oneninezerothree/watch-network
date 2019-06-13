@@ -1,13 +1,13 @@
 <template>
     <div class="W_title">
         <ul class="clearfix">
-            <li class="wb_title_middle wb_search_result">
+            <router-link class="wb_title_middle wb_search_result" to="/search/" tag="li">
                 <i class="srh_icon iconfont">&#xe6e4;</i>
                 <a class="search_work esp1">搜索商品</a>
                 <span class="clean_search h">
                     <i class="icon-a-close02"></i>
                 </span>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>
@@ -47,7 +47,7 @@ export default Vue.extend({});
 }
 .W_title .wb_search_result .srh_icon, .W_title li.wb_index_srearch .srh_icon {
     position: absolute;
-    top: 8px;
+    top: 0px;
     left: 11px;
     color :#999;
 }
@@ -55,5 +55,10 @@ export default Vue.extend({});
     content: "";
     display: block;
     clear: both;
+}
+.W_title .wb_title_middle {
+    width: auto;
+    position: relative;
+    margin-left: 0.8125rem;
 }
 </style>

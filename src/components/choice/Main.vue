@@ -60,7 +60,7 @@
             <p class="hot_tit">猜你喜欢</p>
             <div class="sort_list sort_list_01">
               <ul class="clearfix">
-                <router-link :to="{path:'/list'}" tag="li" v-for="item of like" :key="item.id">
+                <router-link  tag="li" v-for="item of like" :key="item.id" :to="'/list/'+item.name">
                   <a>
                     <p class="p_img">
                       <img :src="item.imgUrl" alt>
