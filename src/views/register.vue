@@ -39,6 +39,7 @@
         <input class="img" type="button" @click="createdCode" v-model="checkCode">
       </p>
       <p class="note">
+<<<<<<< HEAD
         <input
           type="number"
           placeholder="短信验证码"
@@ -74,6 +75,15 @@
         >
       </p>
       <a href="javascript:void(0);" class="nextBtn" id="register" @click="register">注&nbsp;&nbsp;册</a>
+=======
+        <input type="number" placeholder="短信验证码" id="note_code" maxlength="6">
+        <a href="javascript:void(0);" id="send_code">发送验证码</a>
+      </p>
+      <p class="password">
+        <input type="password" placeholder="设置密码" id="setpassword">
+      </p>
+      <a href="javascript:void(0);" class="nextBtn" id="register">注&nbsp;&nbsp;册</a>
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
       <p class="register_agreement">
         点击注册意味着阁下同意
         <a href="https://mu.wbiao.cn/member/protocol">《万表用户协议》</a>
@@ -84,6 +94,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+<<<<<<< HEAD
 import $ from "jquery";
 import { Toast } from "mint-ui";
 import axios from "../assets/js/axios";
@@ -104,15 +115,31 @@ export default Vue.extend({
       isPass: false, //密码开关
       isCode: false, //验证码开关
       isPCode: false //手机验证码开关
+=======
+import {Toast} from 'mint-ui';
+export default Vue.extend({
+  data() {
+    return {
+      code: "",
+      checkCode: "",
+      phone:"",//..输入的手机号码
+      picLyanzhengma: "" ,//..输入的验证码
+      isPhone:false ,//验证码开关
+      isPass:false ,//验证码开关
+      isCode:false ,//验证码开关
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
     };
   },
   created() {
     this.createdCode();
   },
   methods: {
+<<<<<<< HEAD
     prev() {
       this.$router.go(-1);
     },
+=======
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
     // 图片验证码
     createdCode() {
       // 先清空验证码输入
@@ -122,6 +149,7 @@ export default Vue.extend({
       // 验证码长度
       const codeLength = 4;
       // 随机数
+<<<<<<< HEAD
       const random = new Array(
         0,
         1,
@@ -160,6 +188,10 @@ export default Vue.extend({
         "Y",
         "Z"
       );
+=======
+      const random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 
+         'S','T','U','V','W','X','Y','Z');
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
       for (let i = 0; i < codeLength; i++) {
         // 取得随机数的索引(0~35)
         let index = Math.floor(Math.random() * 36);
@@ -173,6 +205,7 @@ export default Vue.extend({
     checkLpicma() {
       this.picLyanzhengma.toUpperCase(); //取得输入的验证码并转化为大写
       if (this.picLyanzhengma == "") {
+<<<<<<< HEAD
         let instance = Toast("请输入验证码");
         setTimeout(() => {
           instance.close();
@@ -182,15 +215,31 @@ export default Vue.extend({
         setTimeout(() => {
           instance.close();
         }, 2000);
+=======
+          let instance = Toast('请输入验证码');
+            setTimeout(() => {
+          instance.close();
+        }, 2000);
+      } else if (this.picLyanzhengma.toUpperCase() != this.checkCode) {
+          let instance = Toast('验证码输入错误');
+            setTimeout(() => {
+          instance.close();
+           }, 2000);
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
         this.createdCode(); //刷新验证码
         this.picLyanzhengma = "";
       } else {
         //输入正确时
+<<<<<<< HEAD
         this.isCode = true;
+=======
+        this.isCode = true
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
       }
     },
     // 验证所输入手机号是否正确
     checkPhone() {
+<<<<<<< HEAD
       const reg = /^1[345789]\d{9}$/; //验证码手机正则
       if (this.phone == "") {
         let instance = Toast("请输入手机号码");
@@ -205,10 +254,27 @@ export default Vue.extend({
         setTimeout(() => {
           instance.close();
         }, 2000);
+=======
+      const reg = /^1[3456789]\d{9}$/;//验证码手机正则
+      if (this.phone == '') {
+          let instance = Toast('请输入手机号码');
+            setTimeout(() => {
+          instance.close();
+        }, 2000);
+      } else if (reg.test(this.phone)) {
+          //输入正确时
+        this.isPhone = true
+      } else {
+        let instance = Toast('手机号码输入错误');
+            setTimeout(() => {
+          instance.close();
+           }, 2000);
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
         this.createdCode(); //刷新验证码
         this.phone = "";
       }
     },
+<<<<<<< HEAD
     // 验证所输入密码是否正确
     checkPassword() {
       if (this.password == "") {
@@ -333,6 +399,8 @@ export default Vue.extend({
         this.$router.push({ path: "/login" });
       }
     }
+=======
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
   }
 });
 </script>
@@ -413,11 +481,19 @@ a {
       overflow: hidden;
       background: url("http://s4.sinaimg.cn/middle/6319918c4820361e752d3&690");
     }
+<<<<<<< HEAD
     p.note #send_code {
       width: 90px;
       height: 44px;
       line-height: 44px;
       font-size: 14px;
+=======
+    p.note a {
+      width: 90px;
+      height: 44px;
+      line-height: 44px;
+      font-size: 12px;
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
       color: #999;
       text-align: center;
       position: absolute;

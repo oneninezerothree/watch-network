@@ -5,12 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isShowMfooter:true
+    isShowMfooter:true,
+    goods: '',
+    zhonglei : ''
   },
   mutations: {
-
+		
   },
   actions: {
 
+  },
+	getters: {
+	getdata(state) {
+   return state.goodslist;
   }
+		
+	}
 })

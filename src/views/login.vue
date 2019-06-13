@@ -118,6 +118,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+<<<<<<< HEAD
 import $ from "jquery";
 import { Toast } from "mint-ui";
 import axios from "../assets/js/axios";
@@ -376,13 +377,25 @@ export default Vue.extend({
         }
       }
     }
+=======
+export default Vue.extend({
+  data() {
+    return {
+      selected: "tab1"
+    };
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
   }
 });
 </script>
 
 <style lang="scss">
+<<<<<<< HEAD
 body {
   background-color: white;
+=======
+body{
+    background-color:white
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
 }
 * {
   margin: 0;
@@ -407,8 +420,13 @@ a {
       }
     }
   }
+<<<<<<< HEAD
   .login_content {
     margin-top: 50px;
+=======
+  .login_content{
+      margin-top: 50px
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
   }
   .mint-tab-item {
     font-size: 24px !important;
@@ -443,13 +461,19 @@ a {
           float: left;
         }
       }
+<<<<<<< HEAD
       .identify .img {
+=======
+      p.identify img {
+        float: left;
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
         width: 90px;
         margin-top: 3px;
         position: absolute;
         height: 41px;
         right: 0;
         top: 0;
+<<<<<<< HEAD
         font-size: 22px;
         overflow: hidden;
         background: url("http://s4.sinaimg.cn/middle/6319918c4820361e752d3&690");
@@ -459,6 +483,17 @@ a {
         height: 44px;
         line-height: 44px;
         font-size: 14px;
+=======
+        overflow: hidden;
+        font-size: 14px
+      }
+      p.note a {
+        width: 90px;
+        float: left;
+        height: 44px;
+        line-height: 44px;
+        font-size: 12px;
+>>>>>>> 6fe59c23427b830cdb4e16d32f753f4d983ea581
         color: #999;
         text-align: center;
         position: absolute;

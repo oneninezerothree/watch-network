@@ -1,7 +1,7 @@
 <template>
-  <section class="W_gn_goods" id="W_gn_goods">
-    <div class="commodity">
-      <router-link class="item" v-for="item of list" :key="item.id" sale-status="1" shop-type="1" to="/detail" tag="a">
+  <div class="W_gn_goods" id="W_gn_goods">
+    <div class="commodity" v-if="list">
+      <router-link class="item" v-for="item of list" :key="item.id" sale-status="1" shop-type="1" :to="'/detail/'+item.id" tag="a">
         <p class="p1">
           <img
             :src="item.imgUrl"
@@ -21,14 +21,15 @@
         </p>
       </router-link>
     </div>
-      <div class="ding"></div>
-  </section>
+  </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
     props:{
         list:Array
+    },
+    mounted(){
     }
 });
 </script>
