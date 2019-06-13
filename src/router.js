@@ -14,14 +14,14 @@ export default new Router({
       component: Home
     },
     {
-<<<<<<< HEAD
       path: '/search',
       name: 'search',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/Search.vue')
-=======
+    },
+    {
       path: '/choice',
       name: 'choice',
       // route level code-splitting
@@ -45,6 +45,24 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/Mine.vue')
     },
+    ,
+    {
+      path: '/login',
+      name: 'login',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/login.vue')
+    },
+    ,
+    {
+      path: '/register',
+      name: 'register',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/register.vue')
+    },
     {
       path: '/list',
       name: 'list',
@@ -59,7 +77,6 @@ export default new Router({
       return savedPosition
     } else {
       return {x: 0, y: 0}
->>>>>>> 86fdd75c9b984f0da5bbea1d100c1c7b3e071744
     }
   }
 })

@@ -7,9 +7,10 @@
 				<ul class="clearfix">
 					<li class="wb_back user_custom"> <a href="###" class="head-logo"><img src="//static.wbiao.co/p/m/images/1/head-logo.png"
 							 alt=""></a> </li>
-					<li class="wb_title_middle wb_index_srearch all_search"> <router-link to="/search" class="to_search esp1"></router-link>购表享12期分期免息优惠<span
-						 class="srh_icon icon-a-search01"></span></li>
-					<li class="wb_right wb_right_kf CUSTOMER-SERVICE"><a href="javascript:void(0);" class="icon-d-ntalk"></a></li>
+					<li class="wb_title_middle wb_index_srearch all_search">
+						<router-link to="/search" class="to_search esp1"></router-link>购表享12期分期免息优惠<span class="srh_icon icon-a-search01"></span>
+					</li>
+					<li class="wb_right wb_right_kf CUSTOMER-SERVICE"><a href="javascript:void(0);" class="icon-d-ntalk iconfont">&#xe673;</a></li>
 				</ul>
 			</header>
 		</section>
@@ -23,10 +24,14 @@
 		data() {
 			return {}
 		},
-		methods:{
-			seach(){
+		methods: {
+			seach() {
 				console.log('ok');
 			}
+		},
+		mounted() {
+			
+
 		}
 	})
 </script>

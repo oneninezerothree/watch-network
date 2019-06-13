@@ -1,31 +1,25 @@
 <template>
-  <div class="home">
-<<<<<<< HEAD
+	<div class="home">
 		<indexhead></indexhead>
 		<indexmain></indexmain>
-=======
-      首页
->>>>>>> 86fdd75c9b984f0da5bbea1d100c1c7b3e071744
-  </div>
+	</div>
 </template>
 
 <script>
-	
-// @ is an alias to /src
-<<<<<<< HEAD
-import indexhead from '@/components/index-head.vue'
-import indexmain from '@/components/index-main.vue'
-=======
->>>>>>> 86fdd75c9b984f0da5bbea1d100c1c7b3e071744
-
-export default {
-  name: 'home',
-  components: {
-<<<<<<< HEAD
-		indexhead,
-		indexmain
-=======
->>>>>>> 86fdd75c9b984f0da5bbea1d100c1c7b3e071744
-  }
-}
+	// @ is an alias to /src
+	import indexhead from '../components/home/index-head.vue'
+	import indexmain from '../components/home/index-main.vue'
+	import {
+		mapGetters
+	} from "vuex";
+	export default {
+		name: 'home',
+		components: {
+			indexhead,
+			indexmain
+		},
+		computed: {
+			...mapGetters(['getdata']),
+		}
+	}
 </script>

@@ -38,6 +38,7 @@ export default Vue.extend({
     },
     mounted(){
         this.getGoodsInfo();
+		console.log(this.$route.query.id)
     }
 })
 </script>
