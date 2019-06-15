@@ -5,16 +5,17 @@
         <a id="icon-gear" class="icon">
           <span class="mui-icon mui-icon-gear-filled"></span>
         </a>
-        <router-link to="/login" tag="a">
-          <a href="##" class="head-info">
+        <a href="##" class="head-info">
+          <router-link to="/login" tag="a">
             <span class="mui-icon mui-icon-contact"></span>
-
-            <div class="head-login">
-              <p class="p1">登录/注册</p>
-              <p class="p2">登录享优惠</p>
-            </div>
-          </a>
-        </router-link>
+          </router-link>
+          <div class="head-login">
+            <router-link to="/login" tag="a">
+              <p class="p1">{{uname}}</p>
+            </router-link>
+            <p class="p2" @click="out">{{title}}</p>
+          </div>
+        </a>
       </div>
       <div class="member-nav">
         <a href="/member/profile/">
@@ -31,7 +32,7 @@
         </a>
       </div>
     </div>
-    <div class="profile">
+    <div class="profile" v-show="isShow">
       <p class="no-login">
         登录后将显示您的详细资料~
         <router-link to="/login" tag="a">马上登录&gt;</router-link>
@@ -109,13 +110,39 @@
     </div>
   </div>
 </template>
+
 <script>
-export default {};
+import { delCookie, getCookie } from "../assets/js/cookie.js";
+export default {
+  data() {
+    return {
+      uname: "登录/注册",
+      title: "登录享优惠",
+      isShow: true
+    };
+  },
+  mounted() {
+    /*页面挂载获取cookie，如果存在uname的cookie，不需登录*/
+    if (getCookie("phone")) {
+      const username = getCookie("phone");
+      this.uname = username;
+      this.title = "退出账号";
+      this.isShow = false;
+    }
+  },
+  methods: {
+    // 退出登录
+    out() {
+      delCookie("phone");
+      this.$router.push("/login");
+    }
+  }
+};
 </script>
 <style lang="scss">
 #my {
   overflow: auto;
-  margin-bottom: 40px
+  margin-bottom: 40px;
 }
 .top {
   position: relative;

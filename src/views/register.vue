@@ -4,7 +4,7 @@
     <div class="header">
       <mt-header fixed>
         <router-link to="/" slot="left">
-          <mt-button icon="back"></mt-button>
+          <mt-button icon="back" @click="prev"></mt-button>
         </router-link>
       </mt-header>
     </div>
@@ -39,13 +39,41 @@
         <input class="img" type="button" @click="createdCode" v-model="checkCode">
       </p>
       <p class="note">
-        <input type="number" placeholder="短信验证码" id="note_code" maxlength="6">
-        <a href="javascript:void(0);" id="send_code">发送验证码</a>
+        <input
+          type="number"
+          placeholder="短信验证码"
+          id="note_code"
+          maxlength="6"
+          v-model="sendcode"
+          @blur="checkPCode"
+        >
+        <input
+          type="button"
+          id="send_code"
+          value="发送验证码"
+          :disabled="disabled"
+          v-if="disabled==false"
+          @click="Sendcode"
+        >
+        <input
+          type="button"
+          id="send_code"
+          :value="btntxt"
+          :disabled="disabled"
+          v-if="disabled==true"
+          @click="Sendcode"
+        >
       </p>
       <p class="password">
-        <input type="password" placeholder="设置密码" id="setpassword">
+        <input
+          type="password"
+          placeholder="设置密码"
+          id="setpassword"
+          v-model="password"
+          @blur="checkPassword"
+        >
       </p>
-      <a href="javascript:void(0);" class="nextBtn" id="register">注&nbsp;&nbsp;册</a>
+      <a href="javascript:void(0);" class="nextBtn" id="register" @click="register">注&nbsp;&nbsp;册</a>
       <p class="register_agreement">
         点击注册意味着阁下同意
         <a href="https://mu.wbiao.cn/member/protocol">《万表用户协议》</a>
@@ -56,23 +84,35 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import {Toast} from 'mint-ui';
+import $ from "jquery";
+import { Toast } from "mint-ui";
+import axios from "../assets/js/axios";
+import { setCookie ,getCookie } from "../assets/js/cookie.js";
 export default Vue.extend({
   data() {
     return {
+      btntxt: "重新发送",
+      sendcode: "",//..输入的手机验证码
+      time: 0,
+      disabled: false,
       code: "",
       checkCode: "",
-      phone:"",//..输入的手机号码
-      picLyanzhengma: "" ,//..输入的验证码
-      isPhone:false ,//验证码开关
-      isPass:false ,//验证码开关
-      isCode:false ,//验证码开关
+      password: "", //..输入的密码
+      phone: "", //..输入的手机号码
+      picLyanzhengma: "", //..输入的验证码
+      isPhone: false, //手机号开关
+      isPass: false, //密码开关
+      isCode: false, //验证码开关
+      isPCode: false //手机验证码开关
     };
   },
   created() {
     this.createdCode();
   },
   methods: {
+    prev() {
+      this.$router.go(-1);
+    },
     // 图片验证码
     createdCode() {
       // 先清空验证码输入
@@ -82,8 +122,44 @@ export default Vue.extend({
       // 验证码长度
       const codeLength = 4;
       // 随机数
-      const random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 
-         'S','T','U','V','W','X','Y','Z');
+      const random = new Array(
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+      );
       for (let i = 0; i < codeLength; i++) {
         // 取得随机数的索引(0~35)
         let index = Math.floor(Math.random() * 36);
@@ -97,42 +173,166 @@ export default Vue.extend({
     checkLpicma() {
       this.picLyanzhengma.toUpperCase(); //取得输入的验证码并转化为大写
       if (this.picLyanzhengma == "") {
-          let instance = Toast('请输入验证码');
-            setTimeout(() => {
+        let instance = Toast("请输入验证码");
+        setTimeout(() => {
           instance.close();
         }, 2000);
       } else if (this.picLyanzhengma.toUpperCase() != this.checkCode) {
-          let instance = Toast('验证码输入错误');
-            setTimeout(() => {
+        let instance = Toast("验证码输入错误");
+        setTimeout(() => {
           instance.close();
-           }, 2000);
+        }, 2000);
         this.createdCode(); //刷新验证码
         this.picLyanzhengma = "";
       } else {
         //输入正确时
-        this.isCode = true
+        this.isCode = true;
       }
     },
     // 验证所输入手机号是否正确
     checkPhone() {
-      const reg = /^1[3456789]\d{9}$/;//验证码手机正则
-      if (this.phone == '') {
-          let instance = Toast('请输入手机号码');
-            setTimeout(() => {
+      const reg = /^1[345789]\d{9}$/; //验证码手机正则
+      if (this.phone == "") {
+        let instance = Toast("请输入手机号码");
+        setTimeout(() => {
           instance.close();
         }, 2000);
       } else if (reg.test(this.phone)) {
-          //输入正确时
-        this.isPhone = true
+        //输入正确时
+        this.isPhone = true;
       } else {
-        let instance = Toast('手机号码输入错误');
-            setTimeout(() => {
+        let instance = Toast("手机号码输入错误");
+        setTimeout(() => {
           instance.close();
-           }, 2000);
+        }, 2000);
         this.createdCode(); //刷新验证码
         this.phone = "";
       }
     },
+    // 验证所输入密码是否正确
+    checkPassword() {
+      if (this.password == "") {
+        let instance = Toast("请输入密码");
+        setTimeout(() => {
+          instance.close();
+        }, 2000);
+      } else if (this.password.length >= 6 && this.password.length <= 18) {
+        //输入正确时
+        this.isPass = true;
+      } else {
+        let instance = Toast("密码长度为6-18位");
+        setTimeout(() => {
+          instance.close();
+        }, 2000);
+        this.password = "";
+      }
+    },
+    // 发送验证码
+    //手机验证发送验证码
+    Sendcode() {
+      const reg = 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+      if (this.phone == "") {
+        let instance = Toast("手机号不能为空");
+        setTimeout(() => {
+          instance.close();
+        }, 2000);
+        return;
+      }
+      if (!reg.test(this.phone)) {
+        let instance = Toast("请输入正确的手机号");
+        setTimeout(() => {
+          instance.close();
+        }, 2000);
+        return;
+      } else {
+        // 发送短信的接口
+
+        //短信模板Id（需要申请，详情看上面申请步骤）
+        var $model_Id = "158043";
+        //您的验证码是#code# 随机的6位数
+        var $tpl_value = "%23code%23%3D" + this.numRandom();
+        //截取后面6位数验证码
+        var registerCode = $tpl_value.substring($tpl_value.length-6, $tpl_value.length)
+        // console.log($tpl_value,code)
+        //获取AppKey（需要申请）
+        var $AppKey = "4b8ffc2250ee865b433bae234a8954ac";
+        // 请求接口
+        $.get({
+          url: "http://v.juhe.cn/sms/send",
+          data: {
+            mobile: this.phone,
+            tpl_id: $model_Id,
+            tpl_value: $tpl_value,
+            key: $AppKey
+          },
+          dataType: "jsonp",
+          success: function(obj) {
+            console.log(obj);
+            setCookie("registerCode", registerCode, 60);//把验证码存到cookie
+          }
+        });
+        
+        let instance = Toast("发送成功");
+        setTimeout(() => {
+          instance.close();
+        }, 2000);
+        this.time = 60;
+        this.disabled = true;
+        this.timer();
+      }
+    },
+    // 验证所输入手机验证码是否正确
+    checkPCode() {
+      var registerCode = getCookie('registerCode')//获取注册的手机验证码
+      if (this.sendcode == registerCode ) {
+        //输入正确时
+        this.isPCode = true;
+      } else {
+        let instance = Toast("手机验证码不匹配");
+        setTimeout(() => {
+          instance.close();
+        }, 2000);
+        
+      }
+    },
+    /**
+     * 生成随机的6位数验证码
+     */
+    numRandom() {
+      var num = "";
+      for (var i = 0; i < 6; i++) {
+        num += Math.floor(Math.random() * 10);
+      }
+      return num;
+    },
+    //60S倒计时
+    timer() {
+      if (this.time > 0) {
+        this.time--;
+        this.btntxt = this.time + "s后重新获取";
+        setTimeout(this.timer, 1000);
+      } else {
+        this.time = 0;
+        this.btntxt = "获取验证码";
+        this.disabled = false;
+      }
+    },
+    // 点击注册
+    async register() {
+      if (this.isCode && this.isPass && this.isPhone && this.isPCode) {
+        // 验证通过，跳转登录页面
+        const { g, p } = axios;
+        const data = await g({
+          url:
+            "https://www.apiopen.top/createUser?key=00d91e8e0cca2b76f515926a36db68f5&phone=" +
+            this.phone +
+            "&passwd=" +
+            this.password
+        });
+        // console.log(data)
+        this.$router.push({ path: "/login" });
+      }
+    }
   }
 });
 </script>
@@ -213,11 +413,11 @@ a {
       overflow: hidden;
       background: url("http://s4.sinaimg.cn/middle/6319918c4820361e752d3&690");
     }
-    p.note a {
+    p.note #send_code {
       width: 90px;
       height: 44px;
       line-height: 44px;
-      font-size: 12px;
+      font-size: 14px;
       color: #999;
       text-align: center;
       position: absolute;
