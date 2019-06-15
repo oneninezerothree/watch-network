@@ -945,4 +945,4 @@ i {
   z-index: 3;
   border-top: 1px solid #d90000;
 }
-</s>
+</style>

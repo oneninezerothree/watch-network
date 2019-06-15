@@ -311,13 +311,6 @@
 		margin-bottom: 50px;
 	}
 
-	* {
-		font-family: Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", STXihei, STHeiti, Heiti, SimSun, sans-serif;
-		margin: 0;
-		padding: 0;
-		font-size: 1em;
-		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-	}
 
 	article,
 	aside,
@@ -733,7 +726,6 @@
 		color: #fff;
 		font-size: 14px;
 		padding-left: 8px;
-		font-family: DIN-Bold;
 	}
 
 	.W_index .product .content .img .yaofeng .yaofeng-price i {

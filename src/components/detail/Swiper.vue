@@ -105,7 +105,6 @@ export default Vue.extend({
     bottom: 12%;
     color: #fff;
     font-size: 36px;
-    font-family: DIN-Bold;
 }
 .pr_carousel .yaofeng .yaofeng-price i {
     font-size: 16px;
