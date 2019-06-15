@@ -88,8 +88,8 @@
                       <div class="left clearfix">
                         <span class="cart-tik fl" @click="allselectBtn(index)">
                           <span class="normal" :class="{
-								 'on':allselect && all
-							}"></span>
+                            'on':allselect
+                          }"></span>
                           <i>全选</i>
                         </span>
                         <div class="detail fr">
@@ -127,32 +127,24 @@ export default {
       allselect: false,
       Num: 1,
       goods: [], //与后台交互获取的当前用户购物车商品列表
-      sum: 0,//默认总价
-	  checkedNames: [], //选中的商品
-	  all:true
+      sum: 0, //默认总价
+      checkedNames: [], //选中的商品
+      all: false //没有全部被选中
     };
   },
-  // created() {
-  // 	// let localgoods = JSON.parse(localStorage.getItem('goodsinfo'));
-  // 	// localgoods.map(function(item) {
-  // 	// 	console.log(item.gid);
-  // 	// })
-  // 	axios.get('https://www.easy-mock.com/mock/5cf5001e6e18ad42e9052ce1/example/watch-goods')
-  // 	.then()
-  // },
   methods: {
-	//计算价格
-	hh:function(){
-		var price = 0;
-		var list = this.goods;
-		for(var i = 0; i < list.length; i++) {
-			if(list[i].select) {
-				let price1 = parseInt(list[i].newprice.replace(/[,¥]/g, "")) * 1;
-				price += list[i].num * price1;
-			}
-			this.sum = price
-		}
-	},
+    //计算价格
+    hh: function() {
+      var price = 0;
+      var list = this.goods;
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].select) {
+          let price1 = parseInt(list[i].newprice.replace(/[,¥]/g, "")) * 1;
+          price += list[i].num * price1;
+        }
+        this.sum = price;
+      }
+    },
     editBtn() {
       if (this.show) {
         this.edit = "完成";
@@ -160,30 +152,30 @@ export default {
         this.edit = "编辑完成";
       }
       this.show = !this.show;
-	},
-	//单选
+    },
+    //单选
     selectGoods(i, index) {
-	  var list = this.goods;
-	  list[index].select = !list[index].select;
-	  this.hh();
-	  if(!list[index].select){
-		  this.all = false
-	  }else{
-		  this.all = true
-	  }
-	},
-	//全选
+      var list = this.goods;
+      list[index].select = !list[index].select;
+      this.hh();
+      this.allselect = list.every(function(val){
+        return val.select
+      })
+    },
+    //全选
     allselectBtn(index) {
-	  this.sum = 0;
-	  var allselect = this.allselect; 
-	  allselect = !this.allselect;
-	  var list = this.goods;
-	  for (var i = 0;i<list.length;i++){
-		  list[i].select = allselect;
-	  }
-	  this.allselect = allselect;
-		this.hh();
-	},
+      this.sum = 0;
+      var allselect = this.allselect;
+      allselect = !this.allselect;
+      var list = this.goods;
+      for (var i = 0; i < list.length; i++) {
+        list[i].select = allselect;
+      }
+      this.hh();
+      this.allselect = list.every(function(val){
+        return val.select
+      })
+    },
 
     // -----------------修改数量--------------
     delNum(i, id) {
@@ -281,19 +273,19 @@ export default {
   },
   mounted() {
     this.getGoodsInfo();
-  },
-//   computed: {
-//     isall: function() {
-//       if (
-//         this.checkedNames.length > 0 &&
-//         this.checkedNames.length === this.goods.length
-//       ) {
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     }
-//   }
+  }
+  //   computed: {
+  //     isall: function() {
+  //       if (
+  //         this.checkedNames.length > 0 &&
+  //         this.checkedNames.length === this.goods.length
+  //       ) {
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
+  //     }
+  //   }
 };
 </script>
 
@@ -889,7 +881,7 @@ i {
   top: 0;
   line-height: 46px;
   font-size: 14px;
-  width: 67px
+  width: 67px;
 }
 
 .W-cart-footer .cart-tik .normal {
