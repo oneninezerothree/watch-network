@@ -6,8 +6,9 @@
 				<ul class="clearfix">
 					<li class="wb_title_middle wb_search">
 						<form action="" onsubmit="return false;"><span class="srh_icon icon-a-search01"></span> <input type="search"
-							 class="input_search" placeholder="搜索商品" maxlength="30" v-model="change"><span class="clean_search" @click="searchGoods()">
-								<router-link :to="{name:searchBtn, params: {id:gids}}" class="icon-a-close02 iconfont">&#xe6e4;</router-link>
+							 class="input_search" placeholder="搜索商品" maxlength="30" v-model="change"><span v-if="searchBlock" class="clean_search"
+							 @click="searchGoods()">
+								<router-link :to="'/list/'+ change" class="icon-a-close02 iconfont">&#xe6e4;</router-link>
 							</span></form>
 					</li>
 					<li class="rewrite_right">
@@ -50,40 +51,45 @@
 	export default Vue.extend({
 		data() {
 			return {
-				searchBtn: '',
 				change: '',
-				gids: []
+				gids: [],
+				searchBlock: false,
+				keyword: ''
 			}
 		},
 		methods: {
 			searchGoods() {
 				//遍历仓库数组数据，逐一匹配
-				console.log(this.$store.state.goodslist);
-				if (this.change) {
-					let data = this.$store.state.goodslist;
-					let reg = new RegExp(this.change, 'g');
-					let goods = [];
-					for (let i = 0; i <= data.length - 1; i++) {
-						if (reg.test(data[i].describe)) {
-							//遍历仓库数组数据,匹配后拿商品id
-							this.gids.push(data[i].gid*1);
-						} else {
-							console.log('no')
-						}
-					}
-					// console.log(goods);
-					// this.gids = goods;
-					console.log(this.gids);
-				}
+				//console.log(this.$store.state.goodslist);
+				// if (this.change) {
+				// let data = this.$store.state.goodslist;
+				// let reg = new RegExp(this.change, 'g');
+				// let goods = [];
+				// for (let i = 0; i <= data.length - 1; i++) {
+				// 	if (reg.test(data[i].describe)) {
+				// 		//遍历仓库数组数据,匹配后拿商品id
+				// 		this.gids.push(data[i].gid * 1);
+				// 	} else {
+				// 		console.log('no')
+				// 	}
+				// }
+				// console.log(goods);
+				// this.gids = goods;
+				//console.log(this.gids);
+				// }
+				
+				// 传搜索关键字
+				this.$store.state.keyword = this.change;
+				//console.log(this.$store.state.keyword);
 			}
 		},
 		watch: {
 			change: function(change) {
 				//console.log(this.change)
 				if (change) {
-					this.searchBtn = 'list';
+					this.searchBlock = true;
 				} else {
-					this.searchBtn = '';
+					this.searchBlock = false;
 				}
 			}
 		}

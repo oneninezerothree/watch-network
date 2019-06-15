@@ -5,7 +5,7 @@
         <div class="coice_content_title fl">已选</div>
         <div class="coice_content_cont fl">
           <span class="coice_content_cont_cont">真皮 蓝色 牛皮</span>
-          <span class="coice_content_cont_num">1</span>个
+          <span class="coice_content_cont_num">{{this.num}}</span>个
         </div>
         <div class="icon-a-goods-more fr" @click="getInfo">···</div>
       </div>
@@ -70,7 +70,6 @@ export default Vue.extend({
     },
   methods: {
     getInfo() {
-        console.log(111);
         this.isShow = !this.isShow;
         console.log(this.isShow);
     },
@@ -84,6 +83,12 @@ export default Vue.extend({
             this.num = num;
         }
     }
+  },
+  watch:{
+	  'num':function(newVal){
+		  this.$store.state.num = newVal;
+		  // console.log(this.$store.state.num);
+	  }
   }
 });
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="pr_carousel">
-    <div class="swiper">
+    <div class="swiper" v-if="bannerUrl">
       <swiper :options='swiperOption'>
         <swiper-slide v-for="(item,index) of bannerUrl" :key="index">
           <img :src="item">

@@ -16,6 +16,10 @@ export default {
   components: {
 		indexhead,
 		indexmain
-  }
+  },
+	// mounted(){
+	// 	let goodsarr = [];
+	// 	localStorage.setItem('goodsinfo',JSON.stringify(goodsarr));
+	// }
 }
 </script>

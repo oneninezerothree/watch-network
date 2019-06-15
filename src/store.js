@@ -6,8 +6,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isShowMfooter:true,
-    goods: '',
-    zhonglei : ''
+    goods: [],
+    zhonglei : '',
+		goodslist:[],
+		keyword:'',
+		num:"1",
+		allGoods:[]
   },
   mutations: {
 		

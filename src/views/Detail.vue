@@ -55,18 +55,23 @@ export default Vue.extend({
             res = res.data;
             var id = this.$route.params.id;
             var zhonglei = this.$store.state.zhonglei;
+			var reg = new RegExp(id, 'g');
             var goods;
             if(res.List){
                 const data = res.List;
-                data.find(function(index){
-                    if(index.category == zhonglei){
-                        Object.keys(index.List).forEach(function(key){
-                            if(index.List[key].id == id){
-                                goods = index.List[key];
-                            }
-                        });
-                    }
-                })
+				if (id) {
+					// goods = [];
+					data.map(function(item) {
+						// console.log(item);
+						item.List.map(function(it) {
+							if (reg.test(it.id)) {
+								//遍历仓库数组数据,匹配后拿商品id
+								// goods.push(it);
+								goods = it;
+							}
+						})
+					})
+				}
                 this.goods = goods;
                 this.bannerUrl = goods.bannerUrl;
                 this.adv = goods.adv;
@@ -80,10 +85,12 @@ export default Vue.extend({
     },
     mounted(){
         this.getGoodsInfo();
+		// this.$store.state.num = 1;
     },
     created(){
         // detail组件进场通知Mfooter组件删除
-        this.$store.state.isShowMfooter = false
+        this.$store.state.isShowMfooter = false;
+		
     },
     deactivated () {
         this.$destroy(true)

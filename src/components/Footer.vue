@@ -2,7 +2,7 @@
   <div v-if="isShowMfooter" class="_3jvb2nTFcJZaKfGT3jLO-N">
     <div class="_2_zO9X158TTb_XBigSBXaa">
       <!-- 编程式导航 -->
-      <a v-for="(t,index) in tabs" :key="index" @click="toggleTab(index,$event)" :class="{ active:index==current}"  class="vhHLSLSvFKDyfNbVNtOGV _1XFdFVvdIV2Kk5DvkemeIS" >
+      <a v-for="(t,index) in tabs" :key="index" @click="toggleTab(index,$event)" :class="{ 'active':$route.name==t.url}"  class="vhHLSLSvFKDyfNbVNtOGV _1XFdFVvdIV2Kk5DvkemeIS" >
         <div class="_3qJAJgmwFK8XUy7QH5OT8t iconfont" :class="t.className" v-html="t.icon" ></div>
         <div class="_2q_OgZBvsix_vxRGtxelUo" v-text="t.name"></div>
       </a>
