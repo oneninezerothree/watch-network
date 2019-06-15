@@ -122,8 +122,7 @@ export default Vue.extend({
 }
 .icon-a-goods-more {
   display: block;
-  text-align: center;
-  width: 32px;
+  text-align: right;
   height: 32px;
 }
 .clearfix:after {

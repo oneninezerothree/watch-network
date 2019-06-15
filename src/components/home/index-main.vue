@@ -183,7 +183,7 @@
 					<p class="title-line"></p>
 				</div>
 				<div class="content clearfix">
-					<a v-for="(item,index) in getdata" v-if="item.home" class="fl product" href="javascript:;">
+					<router-link tag='a' v-for="(item,index) in getdata" :key='index' v-if="item.home" class="fl product" :to="'/detail/'+item.gid">
 						<div class="img">
 							<img :src="item.img1" alt="">
 							<span v-if="item.img2" class="yaofeng">
@@ -199,7 +199,7 @@
 						<div class="tag">
 							<span class="tag-a">自营</span>
 						</div>
-					</a>
+					</router-link>
 				</div>
 			</div>
 		</section>

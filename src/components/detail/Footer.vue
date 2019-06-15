@@ -28,7 +28,8 @@
 				let res = JSON.parse(localStorage.getItem('goodsinfo'))?JSON.parse(localStorage.getItem('goodsinfo')):[] ;
 				let goodsobj = {
 					gid: this.$route.params.id,
-					gnum: this.$store.state.num
+					gnum: this.$store.state.num,
+					select : false
 				};
 				var num;
 				if (res[0]) {

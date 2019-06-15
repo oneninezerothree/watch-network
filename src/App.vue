@@ -1,13 +1,7 @@
 <template>
-<<<<<<< HEAD
   <div id="app">
       <router-view/>
       <Footer></Footer>
-=======
-  <div id="app">	
-    <router-view/>
-    <Footer></Footer>
->>>>>>> 2f299886f47ae3836a13a3a76d1cd81546261863
   </div>
 </template>
 
