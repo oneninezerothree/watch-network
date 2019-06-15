@@ -6,11 +6,11 @@
           <img src="//static.wbiao.co/p/m/images/1/head-logo.png" alt>
         </a>
       </li>
-      <li class="wb_title_middle wb_search_result">
+      <router-link to='/search' tag="li" class="wb_title_middle wb_search_result">
         <i class="srh_icon icon-a-search01 iconfont">&#xe6e4;</i>
         <a class="search_work esp1">搜索商品</a>
         
-      </li>
+      </router-link>
       <router-link to="/choice/" tag="li" class="wb_more">
         <a class="iconfont">&#xe771;</a>
       </router-link>

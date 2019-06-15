@@ -26,7 +26,7 @@
 		},
 		methods: {
 			seach() {
-				console.log('ok');
+				// console.log('ok');
 			}
 		},
 		mounted() {

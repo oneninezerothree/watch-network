@@ -168,7 +168,7 @@ export default {
       var allselect = this.allselect;
       allselect = !this.allselect;
       var list = this.goods;
-      for (var i = 0; i < list.length; i++) {
+      for (var i = 0; i < list.length; i++)    {
         list[i].select = allselect;
       }
       this.hh();
@@ -289,7 +289,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .on {
   background: red;
 }
@@ -945,4 +945,4 @@ i {
   z-index: 3;
   border-top: 1px solid #d90000;
 }
-</style>
+</s>

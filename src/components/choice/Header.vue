@@ -1,7 +1,7 @@
 <template>
     <div class="W_title">
         <ul class="clearfix">
-            <router-link class="wb_title_middle wb_search_result" to="/search/" tag="li">
+            <router-link class="wb_title_middle wb_search_result" to="/search" tag="li">
                 <i class="srh_icon iconfont">&#xe6e4;</i>
                 <a class="search_work esp1">搜索商品</a>
                 <span class="clean_search h">
