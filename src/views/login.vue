@@ -472,7 +472,6 @@ a {
       line-height: 44px;
       background: #aaa;
       font-size: 16px;
-      font-family: PingFangSC-Regular;
       text-align: center;
       display: block;
       height: 44px;

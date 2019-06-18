@@ -8,7 +8,7 @@
 		url('./iconfont/iconfont.woff?t=1560220349113') format('woff'),
 		url('./iconfont/iconfont.ttf?t=1560220349113') format('truetype'),
 		/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-		url('./iconfont/iconfont.svg?t=1560220349113#iconfont') format('svg');
+		url("./iconfont/iconfont.svg?t=1560220349113#iconfont") format("svg");
 	/* iOS 4.1- */
 }
 

@@ -100,7 +100,6 @@ main img {
     font-size: 14px;
     padding-left: 8px;
     text-align: left;
-    font-family: DIN-Bold;
 }
 .W_gn_goods .commodity a p.p1 .yaofeng .yaofeng-price i, .Wb_tj_goods .goods_list .g_img .yaofeng .yaofeng-price i {
     position: absolute;
@@ -135,7 +134,6 @@ em, i {
     color: #333;
     line-height: 12px;
     padding: 8px 12px;
-    font-family: DIN-Bold;
 }
 .W_gn_goods .commodity a p del {
     color: #ccc;
