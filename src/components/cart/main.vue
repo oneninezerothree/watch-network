@@ -193,12 +193,13 @@ export default {
       });
       localStorage.setItem("goodsinfo", JSON.stringify(localgoods));
       this.sum = 0;
-      if (this.allselect) {
-        this.goods.map(item => {
-          let price = parseInt(item.newprice.replace(/[,¥]/g, "")) * 1;
-          this.sum += price * item.num;
-        });
-      }
+      this.hh()
+      // if (this.allselect) {
+      //   this.goods.map(item => {
+      //     let price = parseInt(item.newprice.replace(/[,¥]/g, "")) * 1;
+      //     this.sum += price * item.num;
+      //   });
+      // }
     },
     addNum(i, id) {
       let localgoods = JSON.parse(localStorage.getItem("goodsinfo"));
@@ -212,12 +213,13 @@ export default {
       });
       localStorage.setItem("goodsinfo", JSON.stringify(localgoods));
       this.sum = 0;
-      if (this.allselect) {
-        this.goods.map(item => {
-          let price = parseInt(item.newprice.replace(/[,¥]/g, "")) * 1;
-          this.sum += price * item.num;
-        });
-      }
+      this.hh();
+      // if (this.allselect) {
+      //   this.goods.map(item => {
+      //     let price = parseInt(item.newprice.replace(/[,¥]/g, "")) * 1;
+      //     this.sum += price * item.num;
+      //   });
+      // }
     },
     moveGoods(gid, i) {
       // 修改数据即可,M->V
@@ -231,6 +233,7 @@ export default {
       localStorage.setItem("goodsinfo", JSON.stringify(localgoods));
       // 假删除
       this.goods.splice(i, 1);
+      this.hh();
     },
     getGoodsInfo() {
       axios
@@ -945,4 +948,4 @@ i {
   z-index: 3;
   border-top: 1px solid #d90000;
 }
-</s>
+</style>
